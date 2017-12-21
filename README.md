@@ -15,7 +15,7 @@ We decided to split it in a four parts:
 ## Introduction
 In order to run our code import module.py.
 
-import module
+import modules
 
 In the introduction what we did is quite simple.
 
@@ -39,11 +39,11 @@ We planned to use this structure in intersection function.
 	
 In order to do this part above run this:
 
-module.buildDataStructure()
+modules.buildDataStructure()
 
 and this if you want to check:
 
-module.dict_author_pub
+modules.dict_author_pub
 
 
 ## First point
@@ -98,7 +98,7 @@ Then we built up our graph adding as nodes all the authors and the edges are bet
 
 But how we built this?:
 
-*Building Graph:
+* Building Graph:
 	
 We have three for loop in our function;	
 
@@ -114,7 +114,7 @@ In order to build our graph you just need to run this code:
 
 import networkx as nx
 G = nx.Graph()
-G = module.buildGraph()
+G = modules.buildGraph()
 
 if you want info about this Graph, run this:
 
@@ -153,8 +153,8 @@ In order to plot and check our statistics about subgraph run this code:
 
 module.loglog_plot(H)
 Gt= module.most_important(H)
-module.plot_betwenness(Gt)
-module.top_clos_node(H)
+modules.plot_betwenness(Gt)
+modules.top_clos_node(H)
 
 This second part also deals with **HOP DISTANCE**.
 
@@ -165,7 +165,7 @@ in each iteration if edge is at most equal to the integer d, keep it and append 
 
 At the end we will have all node with the required skills and we plotted them and visualize the graph.
 
-*Hop Distance:
+Hop Distance:
 
 	We wrote function "def hopDistance(author,d):"
 
@@ -182,7 +182,7 @@ At the end we will have all node with the required skills and we plotted them an
 
 In order to run HopDistance_one run the code below:
 
-module.hopDistance_one(G, 93126,23)
+modules.hopDistance_one(G, 93126,23)
 
 ## Third point
 
@@ -195,7 +195,7 @@ We have implemented two functions that calculated the shortest path from a sourc
 
 During the execution we realized that the first function that we implemented had a fairly high computation complexity and therefore took a long time, and in most cases when we compared two quite distant nodes it gave as *maximum depth recursion error*.
 
-*Shortest Path:
+Shortest Path:
 	We wrote shortest path from starch with recursive way.
 
 	We use this data structure in my implementation.
@@ -216,7 +216,7 @@ During the execution we realized that the first function that we implemented had
 				
 In order to run this shortest path algorithm run this code:
 
-shortPath = module.shorthestPath(G,93126,93126)
+shortPath = modules.shortestPath(G,93126,93126)
 
 				
 We know that:
@@ -230,7 +230,7 @@ For this reason, also documenting on the web, we have seen that using the heap a
 
 In order to run the shortest path with heap to calculate distance from Aris and an other target node run this:
 
-module.shortestPath(G,256176, 256177)
+module.shortestPath_heap(G,256176, 256177)
 
 In the second part of this third point we created a function that takes in input a subset of nodes (cardinality smaller than 21) and returns, for each node of the graph, its GroupNumber:
 ![equation](http://latex.codecogs.com/gif.latex?GroupNumber%28v%29%20%3D%20min_%7Bu%20%5Cin%20l%7D%20%28ShortestPath%28v%2Cu%29%29)
@@ -248,11 +248,11 @@ If this weight is minumum we are updating our minimum weight after finished seco
 Also in this part, in order to run this algorithm, run the code below:
  
 group=[93126,256176]
-groupedList = module.findGroupNodes(group,G)
+groupedList = modules.findGroupNodes(group,G)
 
 then if you want to print Aris group run this:
 
-module.printArisGroup(G)
+modules.printArisGroup(G)
 
 ## Authors
 
