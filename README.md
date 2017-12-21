@@ -38,6 +38,7 @@ We planned to use this structure in intersection function.
 In this first part, after importing the library *Networkxx*, we implemented the code to create our Graph.
 
 Once studied the structure of our json file:
+
 where :
 
 + keys are the ‘authors’ and the values are lists of dictionaries containing the authors name and id whose participated in the same publication.
@@ -55,7 +56,9 @@ Before creating the graph we defined the **jaccard** function, which calculated 
 So if two authors have made the same publications, or rather have always collaborated together, their distance of **jaccard** will be 0.
 
 * Calculating Jaccard Distance
+
 	function: def Jaccard(p1,p2):{
+
 	It is taking two lists as input which represent list of publication belongs two different author.
 
 	We will use this lists in intersection function.
@@ -65,6 +68,7 @@ So if two authors have made the same publications, or rather have always collabo
 	
 	
 * In Jaccard function, we also used one help function to convert our input into appropriate format for intersection function.
+
 		We define "listToDict(pubList):{}" function
 
 		[{162021: 'perturbo: a new classification algorithm based on the spectrum perturbations of the laplace-beltrami operator.'},
@@ -80,12 +84,19 @@ So if two authors have made the same publications, or rather have always collabo
 
 Then we built up our graph adding as nodes all the authors and the edges are between the computer scientist who collaborated for the same publications with weight equal to the distance of jaccard between them.
 
--Building Graph
-	We used networkx library to build graph.
-	We three for loop in our function;	First for loop is loop in publications and every step chooses one publication
-										Second for loop choose author in this publication.
-										Third for loop choose other author in this publication.
-											In last part of the third for loop, It is calculating Jaccard distance of these two author.
+But how we built this?:
+
+*Building Graph:
+	
+We have three for loop in our function;	
+
+First for loop is loop in publications and every step chooses one publication.
+
+Second for loop chooses author in this publication.
+
+Third for loop chooses other author in this publication.
+
+In last part of the third for loop, It is calculating Jaccard distance of these two author.
 											
 
 ## Second point
@@ -93,33 +104,44 @@ Then we built up our graph adding as nodes all the authors and the edges are bet
 In the second part after creating the network of computer scientists, we create a function called ‘searchConfid’ that wants in input a conference id and returns all the authors who participated in it.
 So with this function we are now able to draw a subgraph of authors from the entire graph.
 
-Up until now we carried out informations from the subgraph we’ve generated previously with some statistics technique; so we calculate:
+Up until now we carried out informations from the subgraph we’ve generated previously with some statistics technique; 
+
+so we calculate:
 
 + [*Degree*](https://en.wikipedia.org/wiki/Degree_(graph_theory))
 + [*Betweenness centrality*](https://en.wikipedia.org/wiki/Betweenness_centrality)
 + [*Closeness centrality*](https://en.wikipedia.org/wiki/Closeness_centrality)
 
 of nodes.
+
 The function named *most_important* return the nodes in the subgraph with high betweenness centrality.
+
 At the same time the function called *get_top_keys* returns the nodes with highest closeness centrality.
 
 This second part also deals with **HOP DISTANCE**.
+
 We created a function called [hopDistance](https://www.lifewire.com/what-are-hops-hop-counts-2625905) which wants in input a source (author-id) and an integer ‘d’.
-the function first of all computes the shortest path from a node source to all the nodes in the graph and we assign the length of this path to a variable named ‘edge’.
-In each iteration if edge is at most equal to the integer d, keep it and append it in an empty list.
+
+The function first of all computes the shortest path from a node source to all the nodes in the graph and we assign the length of this path to a variable named ‘edge’;
+in each iteration if edge is at most equal to the integer d, keep it and append it in an empty list.
+
 At the end we will have all node with the required skills and we plotted them and visualize the graph.
 
--Hop Distance;
+*Hop Distance:
+
 	We wrote function "def hopDistance(author,d):"
-	It takes two in input, first is author that we calculate distance of
-						   second one in d that represent our distance threshold.
+
+	It takes two in input, first is author that we calculate distance of second one in d that represent our distance threshold.
 	
 	We calculate it with using one for loop in order to loop in all node in graph.
+
 	After choose node in graph, calculated distance into our author and filter that is it has smaller distance than our threshold distance.
+
 	And we are adding these filter nodes into our subgraph and plot them.
 	
 	
 	We also implement it with recursive way. 
+
 	We are reaching neighbors of node and we are giving neighbors into hopDistance function with decreasing degree(degree-1)
 		def hopDistance(node, degree):
 			if(degree == 0):
@@ -140,6 +162,7 @@ First we implemented the Dijkstra algorithm as it was the key to resolving the t
 ![Alt Text](https://media.giphy.com/media/ZkIkk3Y8E6hgc/giphy.gif)
 
 We have implemented two functions that calculated the shortest path from a source node to a destination node.
+
 During the execution we realized that the first function that we implemented had a fairly high computation complexity and therefore took a long time, and in most cases when we compared two quite distant nodes it gave as *maximum depth recursion error*.
 
 *Shortest Path:
@@ -163,7 +186,9 @@ During the execution we realized that the first function that we implemented had
 				
 				
 We know that:
-the running time of Dijkstra's algorithm depends on the combination of the underlying data structure and the graph shape (edges and vertices).
+
+the running time of **Dijkstra's algorithm** depends on the combination of the underlying data structure and the graph shape (edges and vertices).
+
 For example, using a linked list would require ![equation](http://latex.codecogs.com/gif.latex?O%28V%5E2%29) time, i.e. it only depends on the number of vertices. 
 
 Using a heap would require ![equation](http://latex.codecogs.com/gif.latex?O%28%28V%20&plus;%20E%29%20%5Ccdot%20log%20V%29), i.e. it depends on both the number of vertices and the number of edges.
@@ -172,12 +197,15 @@ For this reason, also documenting on the web, we have seen that using the heap a
 In the second part of this third point we created a function that takes in input a subset of nodes (cardinality smaller than 21) and returns, for each node of the graph, its GroupNumber:
 ![equation](http://latex.codecogs.com/gif.latex?GroupNumber%28v%29%20%3D%20min_%7Bu%20%5Cin%20l%7D%20%28ShortestPath%28v%2Cu%29%29)
 
--Grouping nodes that has shorthestPath to the our node.
-	We implemented this function with using for loop in all nodes in Graph. 
-	After choosing that node we used for loop in nodes in group
-	After choosing group node we calculate shorthestpath between these two node and compare with minimum weight, If this weight is minumum we are updating our minimum
-	weight
-		after finished second for loop, we are node which has a minimum weight into pur list.
+* Grouping nodes that has shorthest path to the our node.
+
+We implemented this function with using for loop in all nodes in Graph. 
+
+After choosing that node we used for loop in nodes in group.
+	
+After choosing group node we calculate shorthest path between these two node and compare with minimum weight.
+
+If this weight is minumum we are updating our minimum weight after finished second for loop.
 
 
 ## Authors
