@@ -13,6 +13,10 @@ We decided to split it in a four parts:
 * third point
 
 ## Introduction
+In order to run our code import module.py.
+
+import module
+
 In the introduction what we did is quite simple.
 
 We import data from a Json file saving it in a variable called **data**, we start to observe the data (their structure) and wondering how to approach on it? are there any missing data? 
@@ -33,6 +37,14 @@ We planned to use this structure in intersection function.
 				{730272: 'optimal spectral transportation with application to music transcription.'},
 				{731280: 'mapping estimation for discrete optimal transport.'}]
 	
+In order to do this part above run this:
+
+module.buildDataStructure()
+
+and this if you want to check:
+
+module.dict_author_pub
+
 
 ## First point
 In this first part, after importing the library *Networkxx*, we implemented the code to create our Graph.
@@ -98,11 +110,30 @@ Third for loop chooses other author in this publication.
 
 In last part of the third for loop, It is calculating Jaccard distance of these two author.
 											
+In order to build our graph you just need to run this code:
+
+import networkx as nx
+G = nx.Graph()
+G = module.buildGraph()
+
+if you want info about this Graph, run this:
+
+print(nx.info(G))
 
 ## Second point
 
 In the second part after creating the network of computer scientists, we create a function called ‘searchConfid’ that wants in input a conference id and returns all the authors who participated in it.
 So with this function we are now able to draw a subgraph of authors from the entire graph.
+
+In order to search by ‘ConfId’ you have to run this code:
+
+#given a conference ID return the subgraph induced by the set of authors who published at the input conference at least once
+conf=int(input())
+H = G.subgraph(module.searchConfId(conf))
+
+and this to plot the subgraph:
+
+module.plot_subgraph(H)
 
 Up until now we carried out informations from the subgraph we’ve generated previously with some statistics technique; 
 
@@ -117,6 +148,13 @@ of nodes.
 The function named *most_important* return the nodes in the subgraph with high betweenness centrality.
 
 At the same time the function called *get_top_keys* returns the nodes with highest closeness centrality.
+
+In order to plot and check our statistics about subgraph run this code:
+
+module.loglog_plot(H)
+Gt= module.most_important(H)
+module.plot_betwenness(Gt)
+module.top_clos_node(H)
 
 This second part also deals with **HOP DISTANCE**.
 
@@ -142,17 +180,9 @@ At the end we will have all node with the required skills and we plotted them an
 	
 	We also implement it with recursive way. 
 
-	We are reaching neighbors of node and we are giving neighbors into hopDistance function with decreasing degree(degree-1)
-		def hopDistance(node, degree):
-			if(degree == 0):
-				return resultList
-			if (degree == 1):
-				resultList.append(G.neighbors(node))
-			else:
-				for node in G.neighbors(node):
-					hopDistance(node,degree-1)
-	
-	
+In order to run HopDistance_one run the code below:
+
+module.hopDistance_one(G, 93126,23)
 
 ## Third point
 
@@ -184,6 +214,10 @@ During the execution we realized that the first function that we implemented had
 				If I calculated before then compare weigths with reacing nodes with that nodes
 				If I did not calculate update weigth into that node with sum of dict[sourceNode][unvisitedNode] + G[unvisitedNode][node]['weight']
 				
+In order to run this shortest path algorithm run this code:
+
+shortPath = module.shorthestPath(G,93126,93126)
+
 				
 We know that:
 
@@ -193,6 +227,10 @@ For example, using a linked list would require ![equation](http://latex.codecogs
 
 Using a heap would require ![equation](http://latex.codecogs.com/gif.latex?O%28%28V%20&plus;%20E%29%20%5Ccdot%20log%20V%29), i.e. it depends on both the number of vertices and the number of edges.
 For this reason, also documenting on the web, we have seen that using the heap algorithm becomes more efficient.
+
+In order to run the shortest path with heap to calculate distance from Aris and an other target node run this:
+
+module.shortestPath(G,256176, 256177)
 
 In the second part of this third point we created a function that takes in input a subset of nodes (cardinality smaller than 21) and returns, for each node of the graph, its GroupNumber:
 ![equation](http://latex.codecogs.com/gif.latex?GroupNumber%28v%29%20%3D%20min_%7Bu%20%5Cin%20l%7D%20%28ShortestPath%28v%2Cu%29%29)
@@ -207,6 +245,14 @@ After choosing group node we calculate shorthest path between these two node and
 
 If this weight is minumum we are updating our minimum weight after finished second for loop.
 
+Also in this part, in order to run this algorithm, run the code below:
+ 
+group=[93126,256176]
+groupedList = module.findGroupNodes(group,G)
+
+then if you want to print Aris group run this:
+
+module.printArisGroup(G)
 
 ## Authors
 
