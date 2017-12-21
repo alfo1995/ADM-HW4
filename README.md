@@ -19,12 +19,14 @@ We import data from a Json file saving it in a variable called **data**, we star
 
 At this point, once we decided how to store, manipulate and parse the data, we start creating a dictionary which contains for each *computer scientists* all the publications that he did.
 
--Convert dictionary to author: {list of publication}
-	This part is our one of the main part in our implementation. We convert present data into "author:{list of publication}"
-	Before convert data structure like {authors:{}, publication} but to calculate Jaccard similarity, 
-	we need to reach list of publication for specific author in efficiency way. We planned to use this structure in intersection function.
+* Convert dictionary to ![equation](http://latex.codecogs.com/gif.latex?%5Crightarrow) *author: {list of publication}*
+
+This part is our one of the main part in our implementation. 
+Before convert data structure like {authors:{}, publication} to calculate Jaccard similarity, we need to reach list of publication for specific author in efficiency way. 
+
+We planned to use this structure in intersection function.
 	
-	Example;
+	Example:
 		input:	dict_author_pub[93126]
 		output is list of publication for author which id = 93126
 		out:	[{162021: 'perturbo: a new classification algorithm based on the spectrum perturbations of the laplace-beltrami operator.'},
@@ -35,7 +37,7 @@ At this point, once we decided how to store, manipulate and parse the data, we s
 ## First point
 In this first part, after importing the library *Networkxx*, we implemented the code to create our Graph.
 
-once studied the structure of our json file:
+Once studied the structure of our json file:
 where :
 
 + keys are the ‘authors’ and the values are lists of dictionaries containing the authors name and id whose participated in the same publication.
@@ -52,14 +54,19 @@ Before creating the graph we defined the **jaccard** function, which calculated 
 
 So if two authors have made the same publications, or rather have always collaborated together, their distance of **jaccard** will be 0.
 
-- Calculating Jaccard Distance
-	function; def Jaccard(p1,p2):{}
+* Calculating Jaccard Distance
+	function: def Jaccard(p1,p2):{
 	It is taking two lists as input which represent list of publication belongs two different author.
+
 	We will use this lists in intersection function.
-	We implemented Jaccard distance in order to this formula, 1-J(A,B)
+
+	We implemented Jaccard distance in order to this formula, 1-J(A,B)}
+
 	
-	-In Jaccard function, we also used one help function to convert our input into appropriate format for intersection function.
+	
+* In Jaccard function, we also used one help function to convert our input into appropriate format for intersection function.
 		We define "listToDict(pubList):{}" function
+
 		[{162021: 'perturbo: a new classification algorithm based on the spectrum perturbations of the laplace-beltrami operator.'},
 		{730272: 'optimal spectral transportation with application to music transcription.'},
 		{731280: 'mapping estimation for discrete optimal transport.'}]
@@ -135,9 +142,11 @@ First we implemented the Dijkstra algorithm as it was the key to resolving the t
 We have implemented two functions that calculated the shortest path from a source node to a destination node.
 During the execution we realized that the first function that we implemented had a fairly high computation complexity and therefore took a long time, and in most cases when we compared two quite distant nodes it gave as *maximum depth recursion error*.
 
--Shortest Path;
+*Shortest Path:
 	We wrote shortest path from starch with recursive way.
-	I use this data structure in my implementation.
+
+	We use this data structure in my implementation.
+
 		dictionary; Source node is A and all nodes with weight is value of A
 		{A:{B:weight, 
 			C:weight, 
