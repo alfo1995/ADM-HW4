@@ -171,5 +171,13 @@ In the second part of this third point we created a function that takes in input
 		after finished second for loop, we are node which has a minimum weight into pur list.
 
 
+##Authors
+
+* [*Alfonso D’Amelio*](mailto:damelioalfonso@hotmail.com)
+
+** [*Eren Beşli*](mailto:eren5li@gmail.com)
+
+
+
 
 
