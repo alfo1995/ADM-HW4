@@ -35,7 +35,7 @@ the other keys of the dictionary are:
 
 Before creating the graph we defined the **jaccard** function, which calculated the distance, precisely of **jaccard**, between two authors, on the basis of their publications.
 
-* Jaccard distance: $\frac{|A \bigcup B| - |A \bigcap B|}{|A \bigcup B|}$
+* Jaccard distance: ![equation](http://latex.codecogs.com/gif.latex?J_%7B%5Cdelta%7D%28A%2CB%29%3D%5Cfrac%7B%7CA%20%5Ccup%20B%7C%20-%20%7CA%20%5Ccap%20B%7C%7D%7B%7CA%20%5Ccup%20B%7C%7D)
 
 So if two authors have made the same publications, or rather have always collaborated together, their distance of **jaccard** will be 0.
 
@@ -74,9 +74,9 @@ During the execution we realized that the first function that we implemented had
 
 We know that:
 the running time of Dijkstra's algorithm depends on the combination of the underlying data structure and the graph shape (edges and vertices).
-For example, using a linked list would require $O(V^²)$ time, i.e. it only depends on the number of vertices. 
+For example, using a linked list would require ![equation](http://latex.codecogs.com/gif.latex?O%28V%5E2%29) time, i.e. it only depends on the number of vertices. 
 
-Using a heap would require $O((V + E) \cdot log V)$, i.e. it depends on both the number of vertices and the number of edges.
+Using a heap would require ![equation](http://latex.codecogs.com/gif.latex?O%28%28V%20&plus;%20E%29%20%5Ccdot%20log%20V%29), i.e. it depends on both the number of vertices and the number of edges.
 For this reason, also documenting on the web, we have seen that using the heap algorithm becomes more efficient.
 
 
