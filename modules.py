@@ -337,17 +337,17 @@ def findGroupNodes(group,graph):
 					minim=c
 					newdict[node]=groupNode
 
-		if (bool(newdict)):
-			#print(newdict)
-			if(groupNode in authordict.keys()):
-				newlist= authordict[groupNode]
-				#newdict[i] it will return closest author
-				newlist.append(newdict.keys())
-				authordict[groupNode]=newlist
-					#newlist[(i,j)]=c
-			else:
-				newlist.append(newdict.keys())
-				authordict[groupNode]=newlist
+			if (bool(newdict)):
+				#print(newdict)
+				if(groupNode in authordict.keys()):
+					newlist= authordict[groupNode]
+					#newdict[i] it will return closest author
+					newlist.append(newdict.keys())
+					authordict[groupNode]=newlist
+						#newlist[(i,j)]=c
+				else:
+					newlist.append(newdict.keys())
+					authordict[groupNode]=newlist
 
 	return authordict
 	
