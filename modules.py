@@ -155,7 +155,7 @@ def jaccard(p1,p2):
     p1= listToDict(p1)
     p2= listToDict(p2)
     p1_int_p2=len(set(p1).intersection(p2))
-    result = 1 - (p1_int_p2 / (len(p1) + len(p2)) - p1_int_p2)
+    result = 1 - (p1_int_p2 / (len(p1) + len(p2) - p1_int_p2))
 
     return result
 	
@@ -291,7 +291,7 @@ def shortestPath_heap(graph,start, end):
 			for (next, c) in dictOfNode[v].items():
 				heapq.heappush(queue, (cost + c, next, path))
     
-	return float('inf')	
+	return float('no path')	
 
 
 #############################################################################
@@ -310,6 +310,7 @@ def Check(connect,src,dest,graph):
 	
 	
 #####################
+	
 
 
 def findGroupNodes(group,graph):
@@ -331,7 +332,7 @@ def findGroupNodes(group,graph):
 		for groupNode in group:
 
 			if Check(connect,node,groupNode,graph)=='True':
-				c=shortestPath(dictOfNode,node,groupNode)
+				c=shortestPath_heap(graph,node,groupNode)
 				if c<minim:
 					minim=c
 					newdict[node]=groupNode
@@ -343,7 +344,7 @@ def findGroupNodes(group,graph):
 				#newdict[i] it will return closest author
 				newlist.append(newdict.keys())
 				authordict[groupNode]=newlist
-                    #newlist[(i,j)]=c
+					#newlist[(i,j)]=c
 			else:
 				newlist.append(newdict.keys())
 				authordict[groupNode]=newlist
